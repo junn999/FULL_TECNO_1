@@ -1,6 +1,8 @@
+using FULL_TECNO_1.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +26,9 @@ namespace FULL_TECNO_1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<FULL_TECNO_1Context>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("FULL_TECNO_1Context")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
